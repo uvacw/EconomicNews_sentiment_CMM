@@ -1,0 +1,215 @@
+---
+title: "CMM_R2-Scatterplots"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loading data for titles
+
+```{r}
+# install.packages("fOptions")
+# install.packages("devtools")
+# library(devtools) 
+# devtools::install_github("hadley/productplots")
+setwd(".") 
+
+dataset_title <- read.csv(file = 'kalpha_results_r1/title_for_intercoder.csv', header = TRUE, stringsAsFactors = TRUE)
+dataset_text <- read.csv(file = 'kalpha_results_r1/text_for_intercoder.csv', header = TRUE, stringsAsFactors = TRUE)
+
+scatter_title <- read.csv(file= 'scatterplots_r2/title_z-score_for_scatterplots.csv', header = TRUE, stringsAsFactors = TRUE)
+
+scatter_text <- read.csv(file= 'scatterplots_r2/text_z-score_for_scatterplots.csv', header = TRUE, stringsAsFactors = TRUE)
+
+```
+
+```{r}
+results_df <- data.frame()
+```
+
+
+# text
+## recessie
+```{r}
+ratings <- scatter_text[,c("text_gold","text_recessie")]
+
+ppi <- 300
+png('scatterplots_r2/text_recessie.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(text_gold)~jitter(text_recessie),data=ratings,bty="n",
+    ylim=c(-1.5,1.5),xlim=c(-1.5,0.5),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="Recession", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+
+
+```
+
+## boukes
+```{r}
+ratings <- scatter_text[,c("text_gold","text_boukes")]
+
+ppi <- 300
+png('scatterplots_r2/text_boukes.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(text_gold)~jitter(text_boukes),data=ratings,bty="n",
+    ylim=c(-1.5,1.5),xlim=c(-6,8),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="Damstra & Boukes (2018)", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+
+```
+
+## LIWC
+```{r}
+ratings <- scatter_text[,c("text_gold","text_LIWC")]
+
+ppi <- 300
+png('scatterplots_r2/text_liwc.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(text_gold)~jitter(text_LIWC),data=ratings,bty="n",
+    ylim=c(-1.5,1.5),xlim=c(-4,8),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="LIWC", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+```
+
+## sentistrength
+```{r}
+ratings <- scatter_text[,c("text_gold","text_sentistrength")]
+ppi <- 300
+png('scatterplots_r2/text_senti.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(text_gold)~jitter(text_sentistrength),data=ratings,bty="n",
+    ylim=c(-1.5,1.5),xlim=c(-3,3),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="SentiStrength", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+```
+
+## pattern
+```{r}
+ratings <- scatter_text[,c("text_gold","text_pattern")]
+ppi <- 300
+png('scatterplots_r2/text_pattern.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(text_gold)~jitter(text_pattern),data=ratings,bty="n",
+    ylim=c(-1.5,1.5),xlim=c(-7,6),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="Pattern", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+```
+
+## polyglot
+```{r}
+ratings <- scatter_text[,c("text_gold","text_polyglot")]
+ppi <- 300
+png('scatterplots_r2/text_polyglot.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(text_gold)~jitter(text_polyglot),data=ratings,bty="n",
+    ylim=c(-1.5,1.5),xlim=c(-5,4),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="Polyglot", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+```
+
+## DANEW
+```{r}
+ratings <- scatter_text[,c("text_gold","text_DANEW")]
+ppi <- 300
+png('scatterplots_r2/text_DANEW.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(text_gold)~jitter(text_DANEW),data=ratings,bty="n",
+    ylim=c(-1.5,1.5),xlim=c(-6,4),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="DANEW", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+```
+
+# title
+## recessie
+```{r}
+ratings <- scatter_title[,c("title_gold","title_recessie")]
+
+ppi <- 300
+png('scatterplots_r2/title_recessie.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(title_gold)~jitter(title_recessie),data=ratings,bty="n",
+    ylim=c(-2,2),xlim=c(-1.5,0.5),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="Recession", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+
+
+```
+
+## boukes
+```{r}
+ratings <- scatter_title[,c("title_gold","title_boukes")]
+
+ppi <- 300
+png('scatterplots_r2/title_boukes.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(title_gold)~jitter(title_boukes),data=ratings,bty="n",
+    ylim=c(-2,2),xlim=c(-9,9),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="Damstra & Boukes (2018)", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+
+```
+
+## LIWC
+```{r}
+ratings <- scatter_title[,c("title_gold","title_LIWC")]
+
+ppi <- 300
+png('scatterplots_r2/title_liwc.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(title_gold)~jitter(title_LIWC),data=ratings,bty="n",
+    ylim=c(-2,2),xlim=c(-12,12),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="LIWC", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+```
+
+## sentistrength
+```{r}
+ratings <- scatter_title[,c("title_gold","title_sentistrength")]
+ppi <- 300
+png('scatterplots_r2/title_senti.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(title_gold)~jitter(title_sentistrength),data=ratings,bty="n",
+    ylim=c(-2,2),xlim=c(-4,5),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="SentiStrength", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+```
+
+## pattern
+```{r}
+ratings <- scatter_title[,c("title_gold","title_pattern")]
+ppi <- 300
+png('scatterplots_r2/title_pattern.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(title_gold)~jitter(title_pattern),data=ratings,bty="n",
+    ylim=c(-2,2),xlim=c(-5,5),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="Pattern", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+```
+
+## polyglot
+```{r}
+ratings <- scatter_title[,c("title_gold","title_polyglot")]
+ppi <- 300
+png('scatterplots_r2/title_polyglot.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(title_gold)~jitter(title_polyglot),data=ratings,bty="n",
+    ylim=c(-2,2),xlim=c(-2,1.5),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="Polyglot", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+```
+
+## DANEW
+```{r}
+ratings <- scatter_title[,c("title_gold","title_DANEW")]
+ppi <- 300
+png('scatterplots_r2/title_DANEW.png', width=9*ppi, height=6*ppi, res=ppi)
+plot(jitter(title_gold)~jitter(title_DANEW),data=ratings,bty="n",
+    ylim=c(-2,2),xlim=c(-8,12),cex=0.5,pty="s",xaxt="n",yaxt="n", xlab="DANEW", ylab="Manual coding") 
+axis(1,tick=TRUE,col=0)
+axis(2,tick=TRUE,col=0)
+dev.off()
+```
